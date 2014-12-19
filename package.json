@@ -31,5 +31,9 @@
   "main": "index.coffee",
   "scripts": {
     "test": "grunt test"
+  },
+  "homepage": "https://github.com/eelcokoelewijn/QR-Generator",
+  "directories": {
+    "test": "test"
   }
 }
