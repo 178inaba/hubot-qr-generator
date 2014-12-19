@@ -16,7 +16,12 @@
 
 
 # http(s)://api.qrserver.com/v1/create-qr-code/?data=[URL-encoded-text]&size=[pixels]x[pixels]
+#Nevertheless up to 900 characters should work in general.
 module.exports = (robot) ->
  robot.respond /qr gen (.+)/i, (msg) ->
   data = msg.match[1]
-  msg.send "https://api.qrserver.com/v1/create-qr-code/?data=#{encodeURIComponent(data)}&size=128x128"
+  if data.length > 900
+   msg.send "Maximum length for data is 900 characters"
+   return null
+  else
+   msg.send "https://api.qrserver.com/v1/create-qr-code/?data=#{encodeURIComponent(data)}&size=128x128"
