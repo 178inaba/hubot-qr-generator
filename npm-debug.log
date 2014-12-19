@@ -1,0 +1,78 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.1.11
+3 info using node@v0.10.33
+4 verbose node symlink /usr/local/bin/node
+5 verbose publish [ '.' ]
+6 silly cache add args [ '.', null ]
+7 verbose cache add spec .
+8 silly cache add parsed spec { raw: '.',
+8 silly cache add   scope: null,
+8 silly cache add   name: null,
+8 silly cache add   rawSpec: '.',
+8 silly cache add   spec: '/Users/eelcokoelewijn/Developer/QR-Generator',
+8 silly cache add   type: 'directory' }
+9 verbose tar pack [ '/Users/eelcokoelewijn/.npm/hubot-qr-generator/0.0.2/package.tgz',
+9 verbose tar pack   '/Users/eelcokoelewijn/Developer/QR-Generator' ]
+10 verbose tarball /Users/eelcokoelewijn/.npm/hubot-qr-generator/0.0.2/package.tgz
+11 verbose folder /Users/eelcokoelewijn/Developer/QR-Generator
+12 info prepublish hubot-qr-generator@0.0.2
+13 verbose addLocalTarball adding from inside cache /Users/eelcokoelewijn/.npm/hubot-qr-generator/0.0.2/package.tgz
+14 silly cache afterAdd hubot-qr-generator@0.0.2
+15 verbose afterAdd /Users/eelcokoelewijn/.npm/hubot-qr-generator/0.0.2/package/package.json not in flight; writing
+16 verbose afterAdd /Users/eelcokoelewijn/.npm/hubot-qr-generator/0.0.2/package/package.json written
+17 silly publish { name: 'hubot-qr-generator',
+17 silly publish   description: 'Generate qr-codes for Hubot',
+17 silly publish   version: '0.0.2',
+17 silly publish   author: { name: 'Eelco Koelewijn', email: 'eelco@eelcokoelewijn.nl' },
+17 silly publish   license: 'MIT',
+17 silly publish   keywords: [ 'hubot', 'hubot-scripts' ],
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'git://github.com/eelcokoelewijn/QR-Generator.git' },
+17 silly publish   bugs: { url: 'https://github.com/eelcokoelewijn/QR-Generator/issues' },
+17 silly publish   dependencies: { 'coffee-script': '~1.6' },
+17 silly publish   devDependencies:
+17 silly publish    { mocha: '*',
+17 silly publish      chai: '*',
+17 silly publish      'sinon-chai': '*',
+17 silly publish      sinon: '*',
+17 silly publish      'grunt-mocha-test': '~0.7.0',
+17 silly publish      'grunt-release': '~0.6.0',
+17 silly publish      matchdep: '~0.1.2',
+17 silly publish      'grunt-contrib-watch': '~0.5.3' },
+17 silly publish   main: 'index.coffee',
+17 silly publish   scripts: { test: 'grunt test' },
+17 silly publish   readme: '# hubot-qr-generator\n\nGenerate qr-codes for Hubot\n\nSee [`src/qr-generator.coffee`](src/qr-generator.coffee) for full documentation.\n\n## Installation\n\nIn hubot project repo, run:\n\n`npm install hubot-qr-generator --save`\n\nThen add **hubot-qr-generator** to your `external-scripts.json`:\n\n```json\n["hubot-qr-generator"]\n```\n\n## Sample Interaction\n\n```\nuser1>> hubot qr gen http://www.google.com\nhubot>> https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fwww.google.com&size=128x128\n```\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: '7cbf325df048a0d749d6938b92561da30bf1dc17',
+17 silly publish   homepage: 'https://github.com/eelcokoelewijn/QR-Generator',
+17 silly publish   _id: 'hubot-qr-generator@0.0.2',
+17 silly publish   _shasum: '9b7d12eb2c431ddf8c60e4ed81b2fd2c37a1a9c7',
+17 silly publish   _from: '.' }
+18 silly mapToRegistry name hubot-qr-generator
+19 silly mapToRegistry using default registry
+20 silly mapToRegistry registry https://registry.npmjs.org/
+21 silly mapToRegistry uri https://registry.npmjs.org/hubot-qr-generator
+22 verbose publish registryBase https://registry.npmjs.org/
+23 silly publish uploading /Users/eelcokoelewijn/.npm/hubot-qr-generator/0.0.2/package.tgz
+24 verbose stack Error: auth required for publishing
+24 verbose stack     at CachingRegistryClient.publish (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/publish.js:24:14)
+24 verbose stack     at /usr/local/lib/node_modules/npm/lib/publish.js:124:14
+24 verbose stack     at mapToRegistry (/usr/local/lib/node_modules/npm/lib/utils/map-to-registry.js:55:3)
+24 verbose stack     at publish_ (/usr/local/lib/node_modules/npm/lib/publish.js:104:3)
+24 verbose stack     at Array.1 (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+24 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+24 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:14:28)
+24 verbose stack     at chain (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+24 verbose stack     at /usr/local/lib/node_modules/npm/lib/publish.js:64:5
+24 verbose stack     at RES (/usr/local/lib/node_modules/npm/node_modules/inflight/inflight.js:23:14)
+25 verbose cwd /Users/eelcokoelewijn/Developer/QR-Generator
+26 error Darwin 14.0.0
+27 error argv "node" "/usr/local/bin/npm" "publish"
+28 error node v0.10.33
+29 error npm  v2.1.11
+30 error code ENEEDAUTH
+31 error need auth auth required for publishing
+31 error need auth You need to authorize this machine using `npm adduser`
+32 verbose exit [ 1, true ]
