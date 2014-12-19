@@ -1,0 +1,31 @@
+{
+  "name": "qr-generator",
+  "description": "Generate qr-codes for Hubot",
+  "version": "0.0.1",
+  "author": "Eelco Koelewijn <eelco@eelcokoelewijn.nl>",
+  "license": "MIT",
+  "keywords": [
+    "hubot",
+    "hubot-scripts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6"
+  },
+  "main": "index.coffee",
+  "scripts": {
+    "test": "script/test"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "sinon": "*"
+  }
+}
