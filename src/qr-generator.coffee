@@ -24,4 +24,4 @@ module.exports = (robot) ->
       msg.send "Maximum length for data is 900 characters"
       return null
     else
-      msg.send "https://api.qrserver.com/v1/create-qr-code/?data=#{encodeURIComponent(data)}&size=128x128"
+      msg.send "https://api.qrserver.com/v1/create-qr-code/?data=#{encodeURIComponent(data)}&size=128x128#.png"
