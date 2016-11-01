@@ -20,5 +20,5 @@ Then add **hubot-qr-generator** to your `external-scripts.json`:
 
 ```
 user1>> hubot qr gen http://www.google.com
-hubot>> https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fwww.google.com&size=128x128#.png
+hubot>> https://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2Fwww.google.com&size=128x128
 ```
