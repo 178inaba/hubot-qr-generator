@@ -12,7 +12,7 @@ describe 'qr-generator', ->
   afterEach ->
     @room.destroy()
 
-  it 'responds to hello', ->
+  it 'generate qr code url', ->
     @room.robot.adapterName = 'shell'
     @room.user.say('alice', '@hubot qr gen hello').then =>
       expect(@room.messages).to.eql [
@@ -20,7 +20,7 @@ describe 'qr-generator', ->
         ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128']
       ]
 
-  it 'responds to hello', ->
+  it 'for hipchat', ->
     @room.robot.adapterName = 'hipchat'
     @room.user.say('alice', '@hubot qr gen hello').then =>
       expect(@room.messages).to.eql [
