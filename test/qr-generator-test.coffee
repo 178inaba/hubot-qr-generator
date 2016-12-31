@@ -17,7 +17,7 @@ describe 'qr-generator', ->
     @room.user.say('alice', '@hubot qr gen hello').then =>
       expect(@room.messages).to.eql [
         ['alice', '@hubot qr gen hello']
-        ['hubot', 'https://api.qrserver.com/v1/create-qr-code/?data=hello&size=128x128']
+        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128']
       ]
 
   it 'responds to hello', ->
@@ -25,5 +25,5 @@ describe 'qr-generator', ->
     @room.user.say('alice', '@hubot qr gen hello').then =>
       expect(@room.messages).to.eql [
         ['alice', '@hubot qr gen hello']
-        ['hubot', 'https://api.qrserver.com/v1/create-qr-code/?data=hello&size=128x128#.png']
+        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png']
       ]
