@@ -19,17 +19,27 @@
 
 url = require 'url'
 
-baseUrl = "https://api.qrserver.com/v1/create-qr-code"
+baseUrl = 'https://api.qrserver.com/v1/create-qr-code'
 
 module.exports = (robot) ->
   robot.respond /qr gen (.+)/i, (msg) ->
     data = msg.match[1]
     if data.length > 900
-      msg.send "Maximum length for data is 900 characters"
-      return null
-    else
-      qrUrlObj = url.parse(baseUrl)
-      qrUrlObj.query = {data: encodeURIComponent(data), size: "128x128"}
-      qrUrl = url.format(qrUrlObj)
-      qrUrl += "#.png" if robot.adapterName.toLowerCase() == "hipchat"
-      msg.send qrUrl
+      msg.send 'Maximum length for data is 900 characters.'
+      return
+
+    msg.send makeUrl(data, robot.adapterName)
+
+makeUrl = (data, adapterName) ->
+  urlObj = url.parse(baseUrl)
+  urlObj.query = {data: encodeURIComponent(data), size: '128x128'}
+  adapterHack url.format(urlObj), adapterName
+
+adapterHack = (url, adapterName) ->
+  # If adapter name is empty, it returns the URL of the argument.
+  return url if adapterName is null or adapterName is ''
+
+  # Switch by adapter.
+  switch adapterName.toLowerCase()
+    when 'hipchat' then url + '#.png'
+    else url
