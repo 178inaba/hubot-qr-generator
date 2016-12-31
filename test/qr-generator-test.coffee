@@ -1,16 +1,29 @@
+Helper = require('hubot-test-helper')
 chai = require 'chai'
-sinon = require 'sinon'
-chai.use require 'sinon-chai'
 
 expect = chai.expect
 
+helper = new Helper('../src/qr-generator.coffee')
+
 describe 'qr-generator', ->
   beforeEach ->
-    @robot =
-      respond: sinon.spy()
-      hear: sinon.spy()
+    @room = helper.createRoom()
 
-    require('../src/qr-generator')(@robot)
+  afterEach ->
+    @room.destroy()
 
-  it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/qr gen hello/)
+  it 'responds to hello', ->
+    @room.robot.adapterName = 'shell'
+    @room.user.say('alice', '@hubot qr gen hello').then =>
+      expect(@room.messages).to.eql [
+        ['alice', '@hubot qr gen hello']
+        ['hubot', 'https://api.qrserver.com/v1/create-qr-code/?data=hello&size=128x128']
+      ]
+
+  it 'responds to hello', ->
+    @room.robot.adapterName = 'hipchat'
+    @room.user.say('alice', '@hubot qr gen hello').then =>
+      expect(@room.messages).to.eql [
+        ['alice', '@hubot qr gen hello']
+        ['hubot', 'https://api.qrserver.com/v1/create-qr-code/?data=hello&size=128x128#.png']
+      ]
