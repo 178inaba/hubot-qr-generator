@@ -30,8 +30,8 @@ module.exports = (robot) ->
       return
 
     urlObj = makeUrlObj data
-    urlHackObj = adapterHack urlObj, robot.adapterName
-    msg.send url.format urlHackObj
+    hackUrlObj = adapterHack urlObj, robot.adapterName
+    msg.send url.format hackUrlObj
 
 makeUrlObj = (data) ->
   urlObj = url.parse baseUrl
