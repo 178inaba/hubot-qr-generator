@@ -20,6 +20,7 @@
 url = require 'url'
 
 baseUrl = 'https://api.qrserver.com/v1/create-qr-code'
+size = '128x128'
 
 module.exports = (robot) ->
   robot.respond /qr gen (.+)/i, (msg) ->
@@ -28,18 +29,21 @@ module.exports = (robot) ->
       msg.send 'Maximum length for data is 900 characters.'
       return
 
-    msg.send makeUrl(data, robot.adapterName)
+    urlObj = makeUrlObj data
+    urlHackObj = adapterHack urlObj, robot.adapterName
+    msg.send url.format urlHackObj
 
-makeUrl = (data, adapterName) ->
-  urlObj = url.parse(baseUrl)
-  urlObj.query = {data: encodeURIComponent(data), size: '128x128'}
-  adapterHack url.format(urlObj), adapterName
+makeUrlObj = (data) ->
+  urlObj = url.parse baseUrl
+  urlObj.query = {data: data, size: size}
+  return urlObj
 
-adapterHack = (url, adapterName) ->
-  # If adapter name is empty, it returns the URL of the argument.
-  return url if adapterName is null or adapterName is ''
+adapterHack = (urlObj, adapterName) ->
+  # If the adapter name is null, the URL object of the argument is returned unchanged.
+  return urlObj if adapterName is null
 
   # Switch by adapter.
   switch adapterName.toLowerCase()
-    when 'hipchat' then url + '#.png'
-    else url
+    when 'hipchat' then urlObj.hash = '.png'
+
+  return urlObj
