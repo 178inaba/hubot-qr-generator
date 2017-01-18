@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/eelcokoelewijn/QR-Generator.git"
+    "url": "https://github.com/178inaba/hubot-qr-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/eelcokoelewijn/QR-Generator/issues"
+    "url": "https://github.com/178inaba/hubot-qr-generator/issues"
   },
   "dependencies": {
   },
@@ -39,7 +39,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "homepage": "https://github.com/eelcokoelewijn/QR-Generator",
+  "homepage": "https://github.com/178inaba/hubot-qr-generator",
   "directories": {
     "test": "test"
   }
