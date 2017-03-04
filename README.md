@@ -1,5 +1,7 @@
 # hubot-qr-generator
 
+[![Build Status](https://travis-ci.org/178inaba/hubot-qr-generator.svg?branch=master)](https://travis-ci.org/178inaba/hubot-qr-generator)
+
 Generates QR codes for your Hubot, using service from [QR Code Generator](http://goqr.me/api/doc/create-qr-code/)
 
 See [`src/qr-generator.coffee`](src/qr-generator.coffee) for full documentation.
