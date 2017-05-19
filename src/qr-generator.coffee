@@ -43,7 +43,7 @@ adapterHack = (urlObj, adapterName) ->
   return urlObj if adapterName is null
 
   # Switch by adapter.
-  switch adapterName.toLowerCase()
-    when 'hipchat' then urlObj.hash = '.png'
+  if /hipchat/.test adapterName.toLowerCase()
+    urlObj.hash = '.png'
 
   return urlObj

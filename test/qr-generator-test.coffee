@@ -42,6 +42,14 @@ describe 'qr-generator', ->
         ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png']
       ]
 
+  it 'for hipchat2', ->
+    @room.robot.adapterName = 'hipchat2'
+    @room.user.say('alice', '@hubot qr gen hello').then =>
+      expect(@room.messages).to.eql [
+        ['alice', '@hubot qr gen hello']
+        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png']
+      ]
+
   it 'over 900 chars', ->
     data = ''
     data += 'a' for i in [0..900]
