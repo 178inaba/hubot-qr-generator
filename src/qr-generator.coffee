@@ -18,7 +18,7 @@
 # Nevertheless up to 900 characters should work in general.
 
 url = require 'url'
-
+mdOut = process.env.HUBOT_QR_MARKDOWN == 'true'
 baseUrl = 'https://api.qrserver.com/v1/create-qr-code'
 size = '128x128'
 
@@ -31,7 +31,11 @@ module.exports = (robot) ->
 
     urlObj = makeUrlObj data
     hackUrlObj = adapterHack urlObj, robot.adapterName
-    msg.send url.format hackUrlObj
+    mapUrl = url.format hackUrlObj
+    if mdOut
+      msg.send "![mapUrl](#{mapUrl})"
+    else
+      msg.send mapUrl
 
 makeUrlObj = (data) ->
   urlObj = url.parse baseUrl
