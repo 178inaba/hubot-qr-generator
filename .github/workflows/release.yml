@@ -8,10 +8,6 @@ jobs:
   tagpr:
     name: Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      issues: read
     steps:
       - name: Create GitHub App token
         id: app-token
