@@ -1,0 +1,5 @@
+[tagpr]
+	vPrefix = true
+	releaseBranch = main
+	versionFile = package.json
+	postVersionCommand = npm install --package-lock-only

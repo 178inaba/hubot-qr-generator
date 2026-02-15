@@ -33,5 +33,9 @@
   "homepage": "https://github.com/178inaba/hubot-qr-generator",
   "directories": {
     "test": "test"
+  },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
   }
 }

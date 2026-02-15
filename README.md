@@ -1,5 +1,7 @@
 # hubot-qr-generator
 
+[![Test](https://github.com/178inaba/hubot-qr-generator/actions/workflows/test.yml/badge.svg)](https://github.com/178inaba/hubot-qr-generator/actions/workflows/test.yml)
+
 Generates QR codes for your Hubot, using service from [QR Code Generator](http://goqr.me/api/doc/create-qr-code/)
 
 See [`src/qr-generator.js`](src/qr-generator.js) for full documentation.
