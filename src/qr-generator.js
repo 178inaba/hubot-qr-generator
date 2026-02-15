@@ -17,12 +17,12 @@
 // http(s)://api.qrserver.com/v1/create-qr-code/?data=[URL-encoded-text]&size=[pixels]x[pixels]
 // Nevertheless up to 900 characters should work in general.
 
-const url = require('url');
+import url from 'node:url';
 
 const baseUrl = 'https://api.qrserver.com/v1/create-qr-code';
 const size = '128x128';
 
-module.exports = (robot) => {
+export default (robot) => {
   robot.respond(/qr gen (.+)/i, (msg) => {
     const data = msg.match[1];
     if (data.length > 900) {

@@ -1,73 +1,70 @@
-const Helper = require('hubot-test-helper');
-const chai = require('chai');
-const url = require('url');
-const qs = require('querystring');
-
-const { expect } = chai;
-
-const helper = new Helper('../src/qr-generator.js');
+import { expect } from 'chai';
+import { Robot, TextMessage, User } from 'hubot';
+import DummyAdapter from './doubles/DummyAdapter.js';
+import script from '../src/qr-generator.js';
 
 describe('qr-generator', function() {
-  beforeEach(function() {
-    this.room = helper.createRoom();
-  });
+  let robot;
+  let sends;
 
-  afterEach(function() {
-    this.room.destroy();
-  });
+  beforeEach(async function() {
+    robot = new Robot(DummyAdapter, false, 'hubot');
+    await robot.loadAdapter();
 
-  it('generate qr code url', function() {
-    return this.room.user.say('alice', '@hubot qr gen hello').then(() => {
-      expect(this.room.messages).to.eql([
-        ['alice', '@hubot qr gen hello'],
-        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128']
-      ]);
+    sends = [];
+    robot.adapter.on('send', (envelope, ...strings) => {
+      sends.push(...strings);
     });
+
+    script(robot);
+    await robot.run();
   });
 
-  it('escape url', function() {
-    const dataUrl = 'https://github.com/';
-    return this.room.user.say('alice', '@hubot qr gen ' + dataUrl).then(() => {
-      expect(this.room.messages).to.eql([
-        ['alice', '@hubot qr gen ' + dataUrl],
-        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=https%3A%2F%2Fgithub.com%2F&size=128x128']
-      ]);
-
-      const qrUrl = this.room.messages[1][1];
-      const urlObj = url.parse(qrUrl);
-      const qsObj = qs.parse(urlObj.query);
-      expect(dataUrl).to.equal(qsObj['data']);
-    });
+  afterEach(async function() {
+    await robot.shutdown();
   });
 
-  it('for hipchat', function() {
-    this.room.robot.adapterName = 'hipchat';
-    return this.room.user.say('alice', '@hubot qr gen hello').then(() => {
-      expect(this.room.messages).to.eql([
-        ['alice', '@hubot qr gen hello'],
-        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png']
-      ]);
-    });
+  async function say(text) {
+    const user = new User('alice', { name: 'alice', room: '#test' });
+    const message = new TextMessage(user, text, '1');
+    await robot.receive(message);
+  }
+
+  it('generate qr code url', async function() {
+    await say('@hubot qr gen hello');
+    expect(sends).to.eql([
+      'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128'
+    ]);
   });
 
-  it('for hipchat2', function() {
-    this.room.robot.adapterName = 'hipchat2';
-    return this.room.user.say('alice', '@hubot qr gen hello').then(() => {
-      expect(this.room.messages).to.eql([
-        ['alice', '@hubot qr gen hello'],
-        ['hubot', 'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png']
-      ]);
-    });
+  it('escape url', async function() {
+    await say('@hubot qr gen https://github.com/');
+    expect(sends).to.eql([
+      'https://api.qrserver.com/v1/create-qr-code?data=https%3A%2F%2Fgithub.com%2F&size=128x128'
+    ]);
   });
 
-  it('over 900 chars', function() {
-    let data = '';
-    for (let i = 0; i <= 900; i++) { data += 'a'; }
-    return this.room.user.say('alice', '@hubot qr gen ' + data).then(() => {
-      expect(this.room.messages).to.eql([
-        ['alice', '@hubot qr gen ' + data],
-        ['hubot', 'Maximum length for data is 900 characters.']
-      ]);
-    });
+  it('for hipchat', async function() {
+    robot.adapterName = 'hipchat';
+    await say('@hubot qr gen hello');
+    expect(sends).to.eql([
+      'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png'
+    ]);
+  });
+
+  it('for hipchat2', async function() {
+    robot.adapterName = 'hipchat2';
+    await say('@hubot qr gen hello');
+    expect(sends).to.eql([
+      'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png'
+    ]);
+  });
+
+  it('over 900 chars', async function() {
+    const data = 'a'.repeat(901);
+    await say('@hubot qr gen ' + data);
+    expect(sends).to.eql([
+      'Maximum length for data is 900 characters.'
+    ]);
   });
 });
