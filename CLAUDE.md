@@ -13,27 +13,23 @@ hubot-qr-generator is a Hubot script plugin that generates QR code image URLs us
 npm install
 
 # Run tests
-npm test          # or: grunt test
-grunt test:watch  # Watch mode
-
-# Bootstrap development environment
-script/bootstrap
+npm test
 ```
 
 ## Architecture
 
-- **Language**: CoffeeScript
-- **Test framework**: Mocha + Chai + hubot-test-helper
-- **Task runner**: Grunt (grunt-mocha-test)
+- **Language**: JavaScript (ES Modules)
+- **Runtime**: Node.js 18+
+- **Test framework**: Mocha + Chai
+- **Hubot**: v14 (peerDependencies: >=11)
 
 ### Key Files
 
-- `src/qr-generator.coffee` - Main script. Listens for `qr gen <data>`, builds QR API URL, applies adapter-specific hacks (e.g., HipChat `.png` hash fragment)
-- `index.coffee` - Hubot script loader entry point. Loads all scripts from `src/`
-- `test/qr-generator-test.coffee` - Tests covering URL generation, URL encoding, adapter hacks, and 900-char limit
+- `src/qr-generator.js` - Main script. Listens for `qr gen <data>`, builds QR API URL
+- `index.js` - Hubot script loader entry point. Loads all scripts from `src/`
+- `test/qr-generator-test.js` - Tests covering URL generation, URL encoding, and 900-char limit
+- `test/doubles/DummyAdapter.js` - Minimal Hubot adapter for testing (replaces hubot-test-helper)
 
 ### Design Notes
 
 - Data over 900 characters is rejected with an error message
-- HipChat adapters get `#.png` appended to the URL for image rendering
-- The `adapterHack` function modifies URL objects based on `robot.adapterName`

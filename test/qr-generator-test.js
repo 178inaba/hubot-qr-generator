@@ -44,22 +44,6 @@ describe('qr-generator', function() {
     ]);
   });
 
-  it('for hipchat', async function() {
-    robot.adapterName = 'hipchat';
-    await say('@hubot qr gen hello');
-    expect(sends).to.eql([
-      'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png'
-    ]);
-  });
-
-  it('for hipchat2', async function() {
-    robot.adapterName = 'hipchat2';
-    await say('@hubot qr gen hello');
-    expect(sends).to.eql([
-      'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128#.png'
-    ]);
-  });
-
   it('over 900 chars', async function() {
     const data = 'a'.repeat(901);
     await say('@hubot qr gen ' + data);

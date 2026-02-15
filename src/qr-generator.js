@@ -30,26 +30,8 @@ export default (robot) => {
       return;
     }
 
-    const urlObj = makeUrlObj(data);
-    const hackUrlObj = adapterHack(urlObj, robot.adapterName);
-    msg.send(url.format(hackUrlObj));
+    const urlObj = url.parse(baseUrl);
+    urlObj.query = {data, size};
+    msg.send(url.format(urlObj));
   });
-};
-
-const makeUrlObj = (data) => {
-  const urlObj = url.parse(baseUrl);
-  urlObj.query = {data, size};
-  return urlObj;
-};
-
-const adapterHack = (urlObj, adapterName) => {
-  // If the adapter name is null, the URL object of the argument is returned unchanged.
-  if (adapterName === null) { return urlObj; }
-
-  // Switch by adapter.
-  if (/hipchat/.test(adapterName.toLowerCase())) {
-    urlObj.hash = '.png';
-  }
-
-  return urlObj;
 };
