@@ -2,8 +2,10 @@
   "name": "hubot-qr-generator",
   "description": "Generate qr-codes for Hubot",
   "version": "2.0.0",
-  "author": "178inaba <178inaba@users.noreply.github.com>",
-  "contributors": ["Eelco Koelewijn <eelco@eelcokoelewijn.nl>"],
+  "author": "Masahiro Furudate <178inaba.git@gmail.com>",
+  "contributors": [
+    "Eelco Koelewijn <eelco@eelcokoelewijn.nl>"
+  ],
   "license": "MIT",
   "keywords": [
     "hubot",
@@ -21,14 +23,13 @@
     "hubot": ">=11"
   },
   "devDependencies": {
-    "chai": "^5.0.0",
     "hubot": "^14.0.0",
-    "mocha": "^11.0.0"
+    "vitest": "^4.0.18"
   },
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*-test.js"
+    "test": "vitest run"
   },
   "homepage": "https://github.com/178inaba/hubot-qr-generator",
   "directories": {
