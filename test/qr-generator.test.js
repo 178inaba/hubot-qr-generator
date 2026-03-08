@@ -1,13 +1,13 @@
-import { expect } from 'chai';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { Robot, TextMessage, User } from 'hubot';
 import DummyAdapter from './doubles/DummyAdapter.js';
 import script from '../src/qr-generator.js';
 
-describe('qr-generator', function() {
+describe('qr-generator', () => {
   let robot;
   let sends;
 
-  beforeEach(async function() {
+  beforeEach(async () => {
     robot = new Robot(DummyAdapter, false, 'hubot');
     await robot.loadAdapter();
 
@@ -20,7 +20,7 @@ describe('qr-generator', function() {
     await robot.run();
   });
 
-  afterEach(async function() {
+  afterEach(async () => {
     await robot.shutdown();
   });
 
@@ -30,24 +30,24 @@ describe('qr-generator', function() {
     await robot.receive(message);
   }
 
-  it('generate qr code url', async function() {
+  it('generate qr code url', async () => {
     await say('@hubot qr gen hello');
-    expect(sends).to.eql([
+    expect(sends).toEqual([
       'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128'
     ]);
   });
 
-  it('escape url', async function() {
+  it('escape url', async () => {
     await say('@hubot qr gen https://github.com/');
-    expect(sends).to.eql([
+    expect(sends).toEqual([
       'https://api.qrserver.com/v1/create-qr-code?data=https%3A%2F%2Fgithub.com%2F&size=128x128'
     ]);
   });
 
-  it('over 900 chars', async function() {
+  it('over 900 chars', async () => {
     const data = 'a'.repeat(901);
     await say('@hubot qr gen ' + data);
-    expect(sends).to.eql([
+    expect(sends).toEqual([
       'Maximum length for data is 900 characters.'
     ]);
   });
