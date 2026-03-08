@@ -2,7 +2,7 @@
   "name": "hubot-qr-generator",
   "description": "Generate qr-codes for Hubot",
   "version": "2.0.0",
-  "author": "178inaba <178inaba@users.noreply.github.com>",
+  "author": "Masahiro Furudate <178inaba.git@gmail.com>",
   "contributors": [
     "Eelco Koelewijn <eelco@eelcokoelewijn.nl>"
   ],
