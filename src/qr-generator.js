@@ -17,7 +17,7 @@
 // http(s)://api.qrserver.com/v1/create-qr-code/?data=[URL-encoded-text]&size=[pixels]x[pixels]
 // Nevertheless up to 900 characters should work in general.
 
-const baseUrl = 'https://api.qrserver.com/v1/create-qr-code';
+const baseUrl = 'https://api.qrserver.com/v1/create-qr-code/';
 const size = '128x128';
 
 export default (robot) => {
