@@ -19,7 +19,6 @@ pnpm test
 ## Architecture
 
 - **Language**: JavaScript (ES Modules)
-- **Runtime**: Node.js 22+
 - **Test framework**: Vitest
 - **Hubot**: v14 (peerDependencies: >=11)
 
