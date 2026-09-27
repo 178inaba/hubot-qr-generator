@@ -1,5 +1,10 @@
 # Changelog
 
+## [v3.0.0](https://github.com/178inaba/hubot-qr-generator/compare/v2.1.0...v3.0.0) - 2026-09-27
+
+- Migrate to pnpm and restrict published files by @178inaba in https://github.com/178inaba/hubot-qr-generator/pull/12
+- Declare and test the supported Node.js range by @178inaba in https://github.com/178inaba/hubot-qr-generator/pull/14
+
 ## [v2.1.0](https://github.com/178inaba/hubot-qr-generator/compare/v2.0.0...v2.1.0) - 2026-03-08
 - Replace Mocha and Chai with Vitest by @178inaba in https://github.com/178inaba/hubot-qr-generator/pull/9
 
