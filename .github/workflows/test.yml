@@ -8,8 +8,11 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Test (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22, 24]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,9 +21,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
+          node-version: ${{ matrix.node-version }}
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run tests
         run: pnpm test
+
+  # The branch ruleset requires a check named "Test"; this job reports the
+  # matrix result under that name so the ruleset does not track matrix entries.
+  test-result:
+    name: Test
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check matrix result
+        run: test "${{ needs.test.result }}" = success
