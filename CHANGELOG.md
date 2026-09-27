@@ -1,5 +1,16 @@
 # Changelog
 
+## [v3.0.1](https://github.com/178inaba/hubot-qr-generator/compare/v3.0.0...v3.0.1) - 2026-09-27
+
+### Changes
+- Avoid the redirect on generated QR code URLs by @178inaba in https://github.com/178inaba/hubot-qr-generator/pull/16
+### Dependencies
+- Bump actions/create-github-app-token from 2 to 3 by @dependabot[bot] in https://github.com/178inaba/hubot-qr-generator/pull/18
+- Bump actions/checkout from 4 to 7 by @dependabot[bot] in https://github.com/178inaba/hubot-qr-generator/pull/19
+- Bump actions/setup-node from 4 to 7 by @dependabot[bot] in https://github.com/178inaba/hubot-qr-generator/pull/20
+- Bump hubot from 14.0.1 to 14.1.0 by @dependabot[bot] in https://github.com/178inaba/hubot-qr-generator/pull/21
+- Bump vitest from 4.1.11 to 5.0.0 by @dependabot[bot] in https://github.com/178inaba/hubot-qr-generator/pull/22
+
 ## [v3.0.0](https://github.com/178inaba/hubot-qr-generator/compare/v2.1.0...v3.0.0) - 2026-09-27
 
 - Migrate to pnpm and restrict published files by @178inaba in https://github.com/178inaba/hubot-qr-generator/pull/12
