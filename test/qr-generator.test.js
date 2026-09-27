@@ -33,14 +33,14 @@ describe('qr-generator', () => {
   it('generate qr code url', async () => {
     await say('@hubot qr gen hello');
     expect(sends).toEqual([
-      'https://api.qrserver.com/v1/create-qr-code?data=hello&size=128x128'
+      'https://api.qrserver.com/v1/create-qr-code/?data=hello&size=128x128'
     ]);
   });
 
   it('escape url', async () => {
     await say('@hubot qr gen https://github.com/');
     expect(sends).toEqual([
-      'https://api.qrserver.com/v1/create-qr-code?data=https%3A%2F%2Fgithub.com%2F&size=128x128'
+      'https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fgithub.com%2F&size=128x128'
     ]);
   });
 
