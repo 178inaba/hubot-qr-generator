@@ -38,5 +38,10 @@
   "publishConfig": {
     "provenance": true,
     "access": "public"
-  }
+  },
+  "packageManager": "pnpm@12.6.0",
+  "files": [
+    "index.js",
+    "src/"
+  ]
 }

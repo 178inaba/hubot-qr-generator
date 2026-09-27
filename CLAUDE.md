@@ -10,24 +10,24 @@ hubot-qr-generator is a Hubot script plugin that generates QR code image URLs us
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run tests
-npm test
+pnpm test
 ```
 
 ## Architecture
 
 - **Language**: JavaScript (ES Modules)
 - **Runtime**: Node.js 18+
-- **Test framework**: Mocha + Chai
+- **Test framework**: Vitest
 - **Hubot**: v14 (peerDependencies: >=11)
 
 ### Key Files
 
 - `src/qr-generator.js` - Main script. Listens for `qr gen <data>`, builds QR API URL
 - `index.js` - Hubot script loader entry point. Loads all scripts from `src/`
-- `test/qr-generator-test.js` - Tests covering URL generation, URL encoding, and 900-char limit
+- `test/qr-generator.test.js` - Tests covering URL generation, URL encoding, and 900-char limit
 - `test/doubles/DummyAdapter.js` - Minimal Hubot adapter for testing (replaces hubot-test-helper)
 
 ### Design Notes
