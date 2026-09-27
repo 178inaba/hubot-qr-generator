@@ -10,10 +10,10 @@ hubot-qr-generator is a Hubot script plugin that generates QR code image URLs us
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run tests
-npm test
+pnpm test
 ```
 
 ## Architecture
